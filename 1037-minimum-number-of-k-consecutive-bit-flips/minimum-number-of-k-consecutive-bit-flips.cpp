@@ -1,5 +1,13 @@
 /*
  OBSERAVATION:
+             KEY:
+                we are greedily changing the window whenever there is a zero, 
+                so only the last window must have remaining zeroes which must be toggled ,
+                we return -1 only when we have to change but there is no window that is 
+                 if(i+k>nums.size()){
+                    return -1;
+                }
+
              1.instead of toggling the window every time we encounter a 
                zero will cost time,so we use queue to eliminate the index
                which is expired when we reach out of the window 
