@@ -1,5 +1,8 @@
 /*
 OBSERVATION:
+           EDGE CASE:
+                    if all the no are negative then min_kadane would be the whole array 
+                    tot-min_kadane results in 0 so it will output 0 ,so max_kadande stores the single largest negative no ,so we return max_kadane
           1.by finding the min subbarray we can minus that from the tot 
           sum to get the circular maximum subbarray( because in wrapping subbarrays
            only a piece of numbers will be cut off so eveythgin will be intact 
