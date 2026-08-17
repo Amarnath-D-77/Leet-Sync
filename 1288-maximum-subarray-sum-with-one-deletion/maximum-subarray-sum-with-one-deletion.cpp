@@ -1,3 +1,10 @@
+/*
+OBSERVATION:
+       states:
+            1.no deletions: standard kadane
+            2.deletions: if we delete now ,then take no_delete of previous;
+                         if not delete now, then take delete of previous+v[curr];
+*/
 class Solution {
 public:
     int dp[100005][2];
