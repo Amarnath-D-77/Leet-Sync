@@ -1,36 +1,39 @@
-
+/* reducing mid gives more k so that 
+   we can find the minimum mid which gives more k
+*/
 class Solution {
 public:
-long long bins(vector<int>&v,long long tar){
-    long long cur=0,k_s=1;
-    for(int i=0;i<v.size();i++){
-      if(cur+v[i]<=tar){
-        cur+=v[i];
-      }
-      else{
-      k_s++;
-      cur=v[i];
-      }
-    }
-    return k_s;
-}
-    int splitArray(vector<int>&nums,int k){
-        long long left=*max_element(nums.begin(),nums.end());
-        long long right=0;
-        int ans;
-        for(int x:nums){
-            right+=(long long)x;
+      int bins(int sum,vector<int>&v,int k){
+        int cur=0;
+        int cnt=1;
+        for(int x:v){
+            if(cur+x<=sum){
+              cur+=x;
+            }
+            else{
+              cnt++;
+              cur=x;
+            }
         }
-        while(left<=right){
-            long long mid=(left+right)/2;
-            long long cnt=bins(nums,mid);
-           if(cnt<=k){
-            ans=(int)mid;
-            right=mid-1;
-           }
-           else{
-            left=mid+1;
-           }
+
+        return cnt<=k;
+      }
+    int splitArray(vector<int>&nums,int k){
+        int l=*max_element(nums.begin(),nums.end()),h=0;
+        for(int x:nums){
+           h+=x;
+        }
+        h+=1;
+        int ans=0;
+        while(l<=h){
+            int mid=l+(h-l)/2;
+            if(bins(mid,nums,k)){
+               ans=mid;
+              h=mid-1;
+            }
+            else{
+             l=mid+1;
+            }
         }
         return ans;
     }
