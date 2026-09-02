@@ -1,3 +1,8 @@
+/*
+  for every valid queen placement checking can we make up to a total of n queen
+   placements if can then it is valid answer, while bactracking we just erase the 
+   valid and try another possibility
+*/
 class Solution {
 public:
  void backtrack(int col,vector<vector<string>>&ans,vector<string>&check,vector<int>&l,vector<int>&up,vector<int>&low,int n){
