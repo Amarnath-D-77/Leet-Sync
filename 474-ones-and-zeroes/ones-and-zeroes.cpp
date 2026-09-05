@@ -3,9 +3,6 @@ public:
     int rec(int idx,int curo,int curz,vector<int>&ones,vector<int>&zer,int m,int n,
     vector<vector<vector<int>>>&dp){
         if(idx==ones.size()){
-            if(curz<=m && curo<=n){
-                return 1;
-            }
             return 0;
         }
         if(dp[idx][curo][curz]!=-1){
@@ -38,6 +35,6 @@ public:
         int curz=0;
         vector<vector<vector<int>>>dp(k,vector<vector<int>>(n+1,vector<int>(m+1,-1)));
         int ans=rec(0,curo,curz,ones,zer,m,n,dp);
-        return ans-1;
+        return ans;
     }
 };
