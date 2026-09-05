@@ -1,3 +1,6 @@
+/*
+  normal knapsack 
+*/
 class Solution {
 public:
     int mod=1e9+7;
