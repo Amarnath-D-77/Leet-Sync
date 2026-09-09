@@ -11,6 +11,12 @@ public:
         for(int j=i;j<=m;j++){
             int mini=INT_MAX;
             for(int k=i;k<=j;k++){
+        /*
+           cost required to cut the stick i...k...j=cuts[j+1]-cuts[i-1]
+           cost required to cut inside the partionted sticks
+             [i..k-1]->the cost is given by dp[i][k-1];
+             [k+1..j]->the cost is given by dp[k+1][j];
+        */
          int cost=cuts[j+1]-cuts[i-1]+dp[i][k-1]+dp[k+1][j];
          mini=min(cost,mini);
             }
