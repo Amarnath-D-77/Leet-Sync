@@ -1,3 +1,23 @@
+/*
+  OBSERVATION:
+                                            idx:  0   1   2    3   4 
+                     suppose there are two boxes [111][2][1111][22][33]
+  To remove all the boxes there are following two options
+
+  option 1--> remove the curent box and obtain the reward
+              idx 0:[111]
+              idx 1...4  :[2][1111][22][33]
+          remove box at idx 0 and obtain the reward and proceed to do find the best for  
+           i+1--->j
+  option 2-->find the box for merging with idx0 
+  idx0:[111]---> idx2[1111]
+  for the above to happend we must remove all boxes between idx0+1-->idx2-1 
+  that is solved by rec(box,ocur,dp,i+1,k-1,0)   
+   and    rec(box,ocur,dp,k,j,extra+ocur[i]) for this 
+   now consider the boxes at idx0 and idx2 are merged and we pass on the combined box to future 
+   and see if we can find another box with same label ie(extra+ocur[i]);
+ 
+*/
 class Solution {
 public:
     int rec(vector<int>&box,vector<int>&ocur,vector<vector<vector<int>>>&dp,int i,int j,int extra){
