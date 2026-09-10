@@ -1,3 +1,15 @@
+/*
+  OBSERVATION:
+             similiar to that of remove boxes,but here unlike remove boxes or
+             vanya and strings, the cost to print one A or 5 A's is same so 
+   in case 1:
+             we print the cur contigous block which costs 1 and then we move to i+1->j
+             
+             rec(dp,box,i+1,k-1)->cost if found by recursion
+             rec(dp,box,k,j)->for this since block i and block j merged the cost of i'th 
+             block is managed by k th block 
+
+*/
 class Solution {
 public:
     int rec(vector<vector<int>>&dp,vector<char>&box,int i,int j){
