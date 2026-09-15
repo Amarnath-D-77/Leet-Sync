@@ -11,7 +11,7 @@ public:
         double maxi=DBL_MAX;
         for(int i=0;i<v.size();i++){
             double ratio=v[i].first;
-            int    qual=v[i].second;
+            int   qual=v[i].second;
             cur+=qual;
             pq.push(qual);
             if(pq.size()>k){
