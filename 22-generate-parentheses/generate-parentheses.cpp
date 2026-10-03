@@ -1,25 +1,25 @@
 class Solution { 
 public: 
-    vector<string> generateParenthesis(int n) { 
-        vector<string> ans;
-        string cur;
-        function<void(int,int)> dfs = [&](int open, int close) {
-            if (open == 0 && close == 0) {
-                ans.push_back(cur);
-                return;
-            }
-            if (open > 0) {
-                cur.push_back('(');
-                dfs(open - 1, close);
-                cur.pop_back();
-            }
-            if (close > open) {
-                cur.push_back(')');
-                dfs(open, close - 1);
-                cur.pop_back();
-            }
-        };
-        dfs(n, n);
+    void backtrack(vector<string>&ans,string &cur,int o, int c,int mp){
+        if(cur.size()==2*mp){
+            ans.push_back(cur);
+            return;
+        }
+        if(o<mp){
+            cur.push_back('(');
+            backtrack(ans,cur,o+1,c,mp);
+            cur.pop_back();
+        }
+        if(c<o){
+            cur.push_back(')');
+            backtrack(ans,cur,o,c+1,mp);
+            cur.pop_back();
+        }
+    }
+    vector<string>generateParenthesis(int n){ 
+        vector<string>ans;
+        string cur="";
+        backtrack(ans,cur,0,0,n);
         return ans;
     } 
 };
