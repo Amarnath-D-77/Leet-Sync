@@ -1,41 +1,52 @@
-class Solution {
-    void remove(string s,int scanStart,int deleteStart,char open,char close,
-                vector<string>&answers){
-        int balance=0;
-        for(int i=scanStart;i<(int)s.size();i++){
-            if(s[i]==open){
-                balance++;
+class Solution{
+public:
+      bool isvalid(string s){
+           int cnt=0;
+           for(char c:s){
+            if(c=='('){
+                cnt++;
             }
-            else if(s[i]==close){
-                balance--;
+            else if(c==')'){
+                cnt--;
             }
-            if(balance>=0){
+            if(cnt<0){
+                return false;
+            }
+           }
+           return cnt==0;
+      }
+    void dfs(string st,int start,int left,int right,vector<string>&res){
+        if(left==0 && right==0){
+            if(isvalid(st)){
+                res.push_back(st);
+            }
+             return;
+        }
+        for(int i=start;i<st.size();i++){
+            if(i>start && st[i]==st[i-1]){
                 continue;
             }
-
-            for(int j=deleteStart;j<=i;j++){
-                if(s[j]==close && (j==deleteStart || s[j-1]!=close)){
-                 remove(s.substr(0,j)+s.substr(j+1),i,j,open,close,answers);
-                }
+            if(left>0 && st[i]=='('){
+                dfs(st.substr(0,i)+st.substr(i+1),i,left-1,right,res);
             }
-
-            return;
-        }
-
-        reverse(s.begin(),s.end());
-
-        if(open=='('){
-            remove(s,0,0,')','(',answers);
-        }
-        else{
-            answers.push_back(s);
+            if(right>0 && st[i]==')'){
+                dfs(st.substr(0,i)+st.substr(i+1),i,left,right-1,res);
+            }
         }
     }
-
-public:
     vector<string>removeInvalidParentheses(string s){
-        vector<string>answers;
-        remove(s,0,0,'(',')',answers);
-        return answers;
+          int left=0,right=0;
+          for(char c:s){
+            if(c=='('){
+                left++;
+            }
+            else if(c==')'){
+                if(left>0)left--;
+                else right++;
+            }
+          }
+          vector<string>res;
+          dfs(s,0,left,right,res);
+          return res;
     }
 };
