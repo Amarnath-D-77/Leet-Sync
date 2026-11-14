@@ -34,22 +34,6 @@ public:
                 break;
             }
         }
-        for(int x:v){
-            cout<<x<<" ";
-        }
-        cout<<endl;
-        for(int x:v1){
-            cout<<x<<" ";
-        }
-        cout<<endl;
-        for(int x:v2){
-            cout<<x<<" ";
-        }
-        cout<<endl;
-        for(int x:v3){
-            cout<<x<<" ";
-        }
-        cout<<endl;
        if(is_sorted(v.begin(),v.end()) ||
           is_sorted(v1.begin(),v1.end()) ||
           is_sorted(v2.begin(),v2.end()) ||
