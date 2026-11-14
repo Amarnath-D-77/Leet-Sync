@@ -1,30 +1,22 @@
 class Solution {
 public:
-    char alpha = 'a';
-    string lastSubstring(string s) {
-        int n = s.length();
-        for(char c : s){
-            alpha = max(alpha , c);
-        }
-        vector<int> ind;
-        for(int i=0;i<n;i++){
-            if(s[i] == alpha) ind.push_back(i); 
-        }
-
-        int best = ind.back();
-        int idx = ind.size() - 2;
-        while(idx >= 0){
-            int cont = ind[idx];         
-            int diff = best - cont;
-            int k = 0;
-            for(;k<diff && best+k<n ; k++){
-                if(s[cont+k] != s[best+k]) break;
+    string lastSubstring(string s){
+        int n=s.size();
+        int i=0,j=1,k=0;
+        while(j+k<n){
+            if(s[i+k]==s[j+k]){
+                k++;
             }
-            
-            if(k == diff || best+k == n || s[cont+k] > s[best+k]) best = cont;            
-
-            idx--;
+            else if(s[i+k]<s[j+k]){
+                i=max(i+k+1,j);
+                j=i+1;
+                k=0;
+            }
+            else{
+                j=j+k+1;
+                k=0;
+                }
         }
-        return s.substr(best , n-best);
+        return s.substr(i);
     }
 };
