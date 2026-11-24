@@ -1,3 +1,14 @@
+/*
+      pref[i]__________lo_________hg
+        ^               (hg - lo )
+(fixed point)
+        lo-the point upto which the pref[j]-pref[i] is less than lo 
+        hg - the point  which the breaks the upper bound 
+    CONCLUSION: 
+              for a fixed pref[i] the points lo to hg-1 inclusive are the ones whose ranges
+              sum is [lower,upper]
+     to calc this in o(n log n) we use modified merge sort          
+*/
 class Solution {
 public:
 long long cntrange(vector<long long>&pref,int left,int mid,int right,int lower,int upper){
